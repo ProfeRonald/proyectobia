@@ -1,0 +1,634 @@
+<html lang="es-DO">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="google" content="notranslate" />
+    <title>BIA - Botiqu&iacute;n con Inteligencia Artificial</title>
+    <meta name="description" content="BIA - Asistente para gestionar la salud medicinal de forma &aacute;gil, eficiente y personal">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="./apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="./apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="./apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="./apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="./apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="./apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="./apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="./apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="./android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="./ms-icon-144x144.png">
+<meta name="theme-color" content="#E8102B">	
+<!-- Iconos de FontAwesome CARGAR SISTEMA JS-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: #E8102B;
+            overflow: hidden;
+            transform: scale(0.7);
+        }
+
+section.resume-section {
+display: flex;
+align-items: center;
+padding-left: 1rem;
+padding-right: 1rem;
+padding-top: 5rem;
+padding-bottom: 5rem;
+max-width: 75rem;
+}
+section.resume-section .resume-section-content {
+width: 100%;
+}
+
+@media (min-width: 768px) {
+section.resume-section {
+min-height: 100vh;
+}
+}
+@media (min-width: 992px) {
+section.resume-section {
+padding-left: 3rem;
+padding-right: 3rem;
+padding-top: 5rem;
+padding-bottom: 5rem;
+}
+}
+
+.categoria {
+display: block;
+position: relative;
+overflow: hidden;
+max-width: 520px;
+margin: auto auto 1rem;
+max-height: 520px;
+}
+
+.categoria .caption {
+display: flex;
+height: 100%;
+width: 100%;
+background-color: rgba(33, 37, 41, 0.2);
+position: absolute;
+top: 0;
+bottom: 0;
+z-index: 1;
+}
+
+.categoria .caption .caption-content {
+color: #fff;
+margin: auto 1.5rem 1.5rem;
+}
+
+.categoria .caption .caption-content h2 {
+font-size: 0.4rem;
+text-transform: uppercase;
+}
+
+.categoria .caption .caption-content p {
+font-weight: 250;
+font-size: 1rem;
+}
+
+@media (min-width: 992px) {
+.categoria {
+max-width: none;
+margin: 0;
+}
+.categoria .caption {
+transition: background-color 0.7s, -webkit-clip-path 0.25s ease-out;
+transition: clip-path 0.25s ease-out, background-color 0.7s;
+transition: clip-path 0.25s ease-out, background-color 0.7s, -webkit-clip-path 0.25s ease-out;
+-webkit-clip-path: inset(0px);
+clip-path: inset(0px);
+
+}
+.categoria .caption .caption-content {
+transition: opacity 0.25s;
+margin-left: 2rem;
+margin-right: 2rem;
+margin-bottom: 2rem;
+}
+.categoria img {
+transition: -webkit-clip-path 0.25s ease-out;
+transition: clip-path 0.25s ease-out;
+transition: clip-path 0.25s ease-out, -webkit-clip-path 0.25s ease-out;
+-webkit-clip-path: inset(-1px);
+clip-path: inset(-1px);
+}
+.categoria:hover img {
+-webkit-clip-path: inset(1.5rem);
+clip-path: inset(1.5rem);
+}
+.categoria:hover .caption {
+background-color: rgba(29, 128, 159, 0.9);
+-webkit-clip-path: inset(1.5rem);
+clip-path: inset(1.5rem);
+
+}
+
+}
+
+.img-fluid{
+height: 350px;
+}
+
+.fondoPantalla{
+width: 100%;
+height: 100%;
+overflow: hidden;
+background-color: white;
+}
+
+.fondoCat1{
+background-color: #0681b9;
+}
+
+.fondoCat2{
+background-color: #08b7be;
+}
+
+.fondoCat3{
+background-color: #d29c08;
+}
+
+.fondoCat4{
+background-color: #062547;
+}
+
+.fondo{
+background-color: #E8102B;
+}
+    </style>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-TLHS4GKVFZ');
+  
+  window.addEventListener('contextmenu', function (e) { 
+    e.preventDefault(); 
+  }, false);
+    
+</script>
+</head>
+
+<body>
+
+<div class="fondoPantalla" style="display: none;"></div>
+
+<div class="border rounded border-info bg-white" style="z-index:9999;width:50%;height:70%;position:absolute;left:25%;top:15%;display:none" id="dispensador">
+
+
+  <div class="align-self-center text-center">
+<h5 class="m-5" id="mensajePantalla"></h5>
+
+</div>
+</div>  
+
+
+    <div class="text-center mt-5" id="intro"><img src="fondo.png" /></div>
+
+<div class="fondo">
+<section class="vh-100" style="background-color: #E8102B;display:none" id="form-login">
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card shadow-2-strong" style="border-radius: 1rem;">
+        <div class="card-body p-5 text-center">
+
+          <h3 class="mb-5">Iniciar Sesi&oacute;n</h3>
+<img  src="logo.png" alt="Blinsol" style="width: 50%;" />
+          <hr class="my-4">
+            <div id="aviso-sesion"></div>
+          <button class="btn btn-lg btn-block btn-primary boton-login" style="background-color: #dd4b39;"
+            type="submit"><i class="fab fa-google me-2"></i> Entrar con Google</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div id="sesion" style="display: none;" class="m-0">
+
+<div class="row m-0">
+<div class="col-2 text-white text-left">
+  <h1 class="display-4 mt-2"><img src="logo2.png" alt="Blinsol"  style="width: 60%;"/></h1>
+</div>
+<div class="col-10 text-white text-left pt-3">
+<p class="mb-0 font-weight-bold" style="font-size:4rem">Asistente inteligente de salud
+</p>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-4">
+    
+    <div class="row">
+    <div class="col-12">
+  
+        
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="pt-0 pt-2" style="background-color: #ED6524">
+                <div class="media align-items-end profile-header">
+                    <div class="profile mr-3 ml-1"><img id="foto" src="user.png" alt="Foto" width="120" height="120" class="rounded mb-2 img-thumbnail" /></div>
+                    <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-0" id="nombre"></h4>
+                    </div>
+        <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-0"><div class="text-right mr-3"> <i class="fa-solid fa-right-from-bracket fa-3x text-white mt-2" id="salir" style="cursor:pointer"></i></div></h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-light pb-0 mb-0">
+                <div style="font-size:2rem" class="ml-1"><i class="fa-solid fa-chart-line"></i> Estad&iacute;sticas</div>
+      <div class="text-white mt-2 pb-1 pl-2" style="font-size:1.2rem;background: #9b59b6;">&Uacute;ltima dosis: <span fecha="" id="fecha"></span>
+        <div id="dosis" style="font-size:1rem"></div>
+      </div>
+      <div class="bg-success text-white mt-0 pl-2" style="font-size:1.3rem">Administraci&oacute;n:
+        <div id="dosiscats" class="ml-2" style="font-size:1rem"></div>
+      </div>
+            </div>
+        </div>
+  
+    </div>
+  </div>
+  
+</div>
+    <div class="col-8 p-0">  
+        
+        
+        
+        <section id="proyectos" style="transform: scale(0.6);margin-top: -151px;margin-left: -200px;" class="">
+        <div class="resume-section-content">                           
+                        <div class="container">
+                          <div class="row no-gutters">
+                            <div class="col-6 p-1">
+                              <a class="categoria mr-3 mb-3" id="cat-1" cat="1" href="#!">
+                                <div class="caption">
+                                  <div class="caption-content">
+                                    <div class="h2 text-white titulos">Cuidado del coraz&oacute;n</div>
+                                    <div class="subheading mb-2 mt-0 p-0">HIPERTENSI&Oacute;N - PRESI&Oacute;N: CAPSULAS</div>
+                                  </div>
+                                </div>
+                                <img class="img-fluid" src="cat1.png" alt="">
+                              </a>
+                            </div>
+                            <div class="col-6 p-1">
+                              <a class="categoria mb-3" id="cat-2" cat="2" href="#!">
+                                    <div class="caption">
+                  <div class="caption-content">
+                  <div class="h2 text-white titulos">Metabolismo</div>
+                  <div class="subheading mb-2 mt-0 p-0">DIABETES: COMPRIMIDOS</div>
+                  </div>
+                </div>
+                <img class="img-fluid" src="cat2.png" alt="">
+                              </a>
+                            </div>
+                            <div class="col-6 p-1">
+                              <a class="categoria mr-3 mb-3" id="cat-3" cat="3" href="#!">
+                                    <div class="caption">
+                  <div class="caption-content">
+                  <div class="h2 text-white titulos">Sistema nervioso</div>
+                  <div class="subheading mb-2 mt-0 p-0">PARKINSON - DOLOR - INFLAMACI&Oacute;N: CAPLETAS</div>
+                  </div>
+                </div>
+                <img class="img-fluid" src="cat3.png" alt="">
+                              </a>
+                            </div>
+                            <div class="col-6 p-1">
+                              <a class="categoria mb-3" id="cat-4" cat="4" href="#!">
+                                    <div class="caption">
+                  <div class="caption-content">
+                  <div class="h2 text-white titulos">Sistema respiratorio</div>
+                  <div class="subheading mb-2 mt-0 p-0">ASMA - GRIPE - FIEBRE: TABLETAS</div>
+                  </div>
+                </div>
+                <img class="img-fluid" src="cat4.png" alt="">
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+      </div>
+  <div class="row bg-white border rounded" style="margin-left: -780px;margin-top: 70px;width: 199%;"><div class="col-2"><img class="border rounded" style="width:150px" src="logopmebd.png"></div><div class="col-10 font-weight-bold mt-4" style="font-size: 3.6rem">Polit&eacute;nico Maestra Elsa Brito de Dom&iacute;nguez</div></div>
+    </section>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<script>
+
+$(document).ready(function () {
+
+    const firebaseConfig = {
+apiKey: "AIzaSyAzcS8YluQwARQxfRz4sxkrCvToVaSocf8",
+authDomain: "proyectobia.firebaseapp.com",
+projectId: "proyectobia",
+storageBucket: "proyectobia.appspot.com",
+messagingSenderId: "692749180937",
+appId: "1:692749180937:web:8046278c937d2f972118d8",
+measurementId: "G-TLHS4GKVFZ"
+  };
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+firebase.database().ref('bia/ServoMotorActivo').set(0);
+firebase.database().ref('bia/ActivarServoMotor').set(0);
+
+firebase.auth().onAuthStateChanged((userInfo) => {
+if (userInfo) {
+
+  const nombre = userInfo.displayName;
+  const email = userInfo.email;
+  const foto = userInfo.photoURL;
+  const vemail = userInfo.emailVerified;
+  const id = userInfo.uid;
+
+  $('.fondoPantalla').hide('slow');
+  $("#intro").hide("slow");
+  $("#form-login").hide("slow");
+  $("#sesion").show("slow");
+
+  $("#foto").attr("src", foto);
+  $("#foto").attr("alt", nombre);
+  $("#nombre").html(nombre);
+
+  $(document).on("click", ".categoria", function () {
+    var cat = $(this).attr('cat');
+    // Pedir a Arduino que active el servomotor
+    firebase.database().ref('bia/ActivarServoMotor').set(cat);
+  });
+
+ function PedirCategoria(cat){
+  if(cat > 0){
+    $("#intro").hide("slow");
+    $("#form-login").hide("slow");
+    $("#sesion").hide("slow");
+    var titulo = $('#cat-'+cat).find('.titulos:first').text();
+    var subheading = $('#cat-'+cat).find('.subheading:first').text();
+    $('#mensajePantalla').html('<span style="font-size:3rem">Dispensando su medicamento...</span><br /><i class="mt-4 fas fa-sync-alt fa-spin fa-4x"></i><br /><div class="row mt-2"><div class="col-3"><img style="width:100%" src="cat' + cat + '-logo.png" /></div><div class="col-9 mt-5 text-left" style="font-size:2.5rem">' + titulo + '</div></div><div style="font-size:1rem" class="mt-5 text-left">' + subheading + '</div>');
+    $('#dispensador').show('slow');
+    $('.fondoPantalla').css({'opacity':0.5});
+    $('.fondoPantalla').show();
+    firebase.database().ref('bia/UltimaDosis').set({'fecha':Date.now(), 'cat': cat});
+    firebase.database().ref('bia/Contador/' + cat).set(firebase.database.ServerValue.increment(1));
+    //SIMULAR CIERRE al dispensar ELIMINAR CUANDO FUNCIONE en arduino
+    setTimeout(function () {
+      firebase.database().ref('bia/ServoMotorActivo').set(0);
+    }, 5000);
+  }
+ }
+
+ firebase.database().ref('bia/UltimaDosis').on('value', function(ud) {
+var cat = ud.val().cat;
+$('#fecha').attr('fecha', ud.val().fecha);
+var titulo = $('#cat-'+cat).find('.titulos:first').text();
+    $('#dosis').html('<div class="row mr-2"><div class="col-2"><img class="border border-white rounded-circle" style="width:100%" src="cat' + cat + '-logo.png" /></div><div class="col-9 text-left p-0 mt-2">' + titulo + '</div></div>');
+    UltimaDosisHace();
+})
+
+firebase.database().ref('bia/Contador').on('value', function(cons) {
+
+  var dosiscats = '';
+ 
+  cons.forEach(function (con) {
+    if(con.key > 0){
+  var cat = con.key;
+  var titulo = $('#cat-'+cat).find('.titulos:first').text();
+  dosiscats += '<div class="row mr-2 py-1 fondoCat'+cat+'" style="width:103%"><div class="col-2"><img class="border border-white rounded-circle" style="width:100%" src="cat' + cat + '-logo.png" /></div><div class="col-9 text-left p-0 mt-2">' + titulo + ': ' + con.val() + ' dosis.</div></div>';
+    }
+  })
+ 
+  $('#dosiscats').html(dosiscats);
+})
+
+function UltimaDosisHace(){
+var fecha = Number($('#fecha').attr('fecha'));
+$('#fecha').html(HaceTiempo(fecha));
+setTimeout(function () {
+  UltimaDosisHace();
+    }, 60000);
+}
+
+ // Detecta ServoMotorActivo y muestra la ventana o la cierra
+ firebase.database().ref('bia/ServoMotorActivo').on('value', function(motor) {
+  if(motor.val() > 0){
+  PedirCategoria(motor.val());
+  }else{
+    $('#dispensador').hide('slow');
+    $("#intro").hide("slow");
+    $("#form-login").hide("slow");
+    $("#sesion").show("slow");
+    $('#mensaje_cat').text('');
+    $('.fondoPantalla').css({'opacity':1});
+    $('.fondoPantalla').hide();
+  }
+ })
+
+ //  setTimeout(function () {
+   
+//Arduino detecta la peticion de activar servomotor y lo activa - simulacion - luego eliminar de aqui
+/*async function logMovies() {
+const imotor = await fetch("https://proyectobia-default-rtdb.firebaseio.com/bia/ActivarServoMotor.json");
+const aimotor = await imotor.json();
+console.log(aimotor);
+firebase.database().ref('bia/ServoMotorActivo').set(aimotor);
+}
+
+$(document).on("click", "#foto", function () {
+logMovies();
+ });*/
+
+
+   // }, 10000);
+
+ firebase.database().ref('bia/ActivarServoMotor').on('value', function(amotor) { 
+  var vamotor = amotor.val(); // esto debe cambiar por el valor o codigo del servomotor : 1, 2, 3 o 4
+    firebase.database().ref('bia/ServoMotorActivo').set(vamotor);
+ })
+
+function HaceTiempo(fecha){
+                
+      var hoy = $.now() / 1000;
+      var hace 	= hoy - (fecha / 1000);
+    
+      var s = Math.round(hace);
+      var m = Math.round(hace / 60);
+      var h = Math.round(hace / 3600);
+      var d = Math.round(hace / 86400);
+      var w = Math.round(hace / 604800);
+      var me = Math.round(hace / 2600640);
+      var a = Math.round(hace / 31207680);
+      
+      if(s < 60 || s == 60){
+        
+        if(s < 1){
+      var tiempo = "un segundo";
+          }else{
+      var tiempo = s + " segundos";
+        }
+      }else{
+      if(m < 60 || m == 60){
+        if(m==1){
+      var tiempo = "un minuto";
+          }else{
+      var tiempo = m + " minutos";
+        }
+      }else{
+      
+      if(h < 24 || h == 24){
+          if(h==1){
+      var tiempo = "una hora";
+          }else{
+      var tiempo = h + " horas";
+          }
+        }else{
+        if(d < 7 || d == 7){
+          if(d==1){
+      var tiempo = "un d&iacute;a";
+          }else{
+      var tiempo = d + " d&iacute;as";
+          }
+        }else{
+          
+          if(w < 4.3 || w == 4.3){
+          if(w==1){
+    var tiempo = "una semana";
+          }else{
+    var	tiempo = w + " semanas";
+          }
+        }else{
+        
+        if(me < 12 || me == 12){
+          if(me==1){
+    var tiempo = "un mes";
+          }else{
+    var tiempo = me + " meses";
+          }
+        }else{
+        
+        if(a==1){
+    var	tiempo = " un a&ntilde;o";
+          }else{
+    var tiempo = a + " a&ntilde;os";
+          }
+        
+        }
+        
+        
+      }
+        
+        } 
+        
+        }
+      
+      }
+
+      }
+
+var fhace = new Date(fecha);
+var mer = 'A.M.';
+var h = fhace.getHours();
+if(h > 12){
+  mer = 'P.M.';	
+  h = h - 12;
+}
+var h = ('0'+h).substr(-2);
+var m = ('0'+fhace.getMinutes()).substr(-2);
+if(h == '00'){
+h = 12;
+}
+  
+      tiempo = 'Hace ' + tiempo + ' | ' + h + ':' + m + ' ' + mer;
+            
+    return tiempo;
+    
+  }
+ 
+
+}else{
+  
+  $("#intro").hide("slow");
+  $("#form-login").show("slow");
+  $("#sesion").hide("slow");
+
+}
+
+});
+
+$(document).on("click", "#salir", function () {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {});
+  });
+
+
+$(document).on("click", ".boton-login", function () {
+   IniciarSesion();
+  });
+
+  function IniciarSesion() {
+
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+firebase
+  .auth()
+  .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+  .then(function () {
+    return firebase
+      .auth()
+      .signInWithRedirect(provider)
+      .then(() => {})
+      .catch((err) => {
+        setTimeout(function () {
+          $("#aviso-sesion").html(
+            '<span class="font-weight-bold text-danger p-2 rounded">&iexcl;Ha ocurrido un error!, Intente de nuevo.</span>'
+          );
+        }, 500);
+      });
+  });
+}
+
+})
+
+$(document).on('click', 'body', function () {
+var requestMethod = document.body.requestFullScreen || document.body.webkitRequestFullScreen || document.body.mozRequestFullScreen || document.body.msRequestFullScreen;
+    if(requestMethod){
+        requestMethod.call(document.body);
+    }else if (typeof window.ActiveXObject !== "undefined"){
+        var wscript = new ActiveXObject("WScript.Shell");
+        if(wscript !== null){
+            wscript.SendKeys("{F11}");
+        }
+}
+});
+
+</script>
+
+</body>
+
+</html>
