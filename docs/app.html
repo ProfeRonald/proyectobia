@@ -401,7 +401,7 @@ section.resume-section .resume-section-content {
         firebase.database().ref('bia/Contador/' + cat).set(firebase.database.ServerValue.increment(1));
         //SIMULAR CIERRE al dispensar ELIMINAR CUANDO FUNCIONE en arduino
         setTimeout(function () {
-          firebase.database().ref('bia/ServoMotorActivo').set(0);
+        //  firebase.database().ref('bia/ServoMotorActivo').set(0);
         }, 5000);
       }
      }
