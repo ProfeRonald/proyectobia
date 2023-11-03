@@ -471,7 +471,7 @@ $(document).on("click", "#foto", function () {
 
      firebase.database().ref('bia/ActivarServoMotor').on('value', function(amotor) { 
       var vamotor = amotor.val(); // esto debe cambiar por el valor o codigo del servomotor : 1, 2, 3 o 4
-        firebase.database().ref('bia/ServoMotorActivo').set(vamotor);
+     //   firebase.database().ref('bia/ServoMotorActivo').set(vamotor);
      })
 
 	function HaceTiempo(fecha){
