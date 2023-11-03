@@ -302,7 +302,7 @@ section.resume-section .resume-section-content {
 										<div class="caption">
                       <div class="caption-content">
                       <div class="h2 text-white titulos">Sistema nervioso</div>
-                      <div class="subheading mb-2 mt-0 p-0">DOLOR - INFLAMACI&Oacute;N: CAPLETAS</div>
+                      <div class="subheading mb-2 mt-0 p-0">PARKINSON - DOLOR - INFLAMACI&Oacute;N: CAPLETAS</div>
                       </div>
                     </div>
                     <img class="img-fluid" src="cat3.png" alt="">
@@ -313,7 +313,7 @@ section.resume-section .resume-section-content {
 										<div class="caption">
                       <div class="caption-content">
                       <div class="h2 text-white titulos">Sistema respiratorio</div>
-                      <div class="subheading mb-2 mt-0 p-0">GRIPE - FIEBRE: TABLETAS</div>
+                      <div class="subheading mb-2 mt-0 p-0">ASMA - GRIPE - FIEBRE: TABLETAS</div>
                       </div>
                     </div>
                     <img class="img-fluid" src="cat4.png" alt="">
@@ -470,9 +470,6 @@ $(document).on("click", "#foto", function () {
         firebase.database().ref('bia/ServoMotorActivo').set(vamotor);
      })
 
-
-
-     
 	function HaceTiempo(fecha){
 					
           var hoy = $.now() / 1000;
@@ -568,6 +565,7 @@ $(document).on("click", "#foto", function () {
           tiempo = 'Hace ' + tiempo + ' | ' + h + ':' + m + ' ' + mer;
                 
         return tiempo;
+        
       }
      
 
