@@ -6,20 +6,20 @@
 		<title>BIA - Botiqu&iacute;n con Inteligencia Artificial</title>
 		<meta name="description" content="BIA - Asistente para gestionar la salud medicinal de forma &aacute;gil, eficiente y personal">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" sizes="192x192"  href="./android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="./android-icon-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="./ms-icon-144x144.png">
 <meta name="theme-color" content="#E8102B">	
-<link rel="manifest" href="./manifest.json">	
+    <link rel="manifest" href="./manifest.json">	
   
         <style>
             body{
                 background-color: #E8102B;
                 overflow: hidden;
-               
+                
             }
 
             .fondo{
@@ -28,9 +28,6 @@
 
         </style>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script>
 	 window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
@@ -50,13 +47,13 @@
 
         <div class="fondo" id="intro"><img src="fondo.png" /></div>
 
-        <script>
-          if ('serviceWorker' in navigator) {
+<script>
+if ('serviceWorker' in navigator) {
            navigator.serviceWorker.register('./pwa.js')
              .then(reg => console.log('Registro de SW exitoso', reg))
              .catch(err => console.warn('Error al tratar de registrar el sw', err))
          }
-       </script>
+</script>
 
 	</body>
 
