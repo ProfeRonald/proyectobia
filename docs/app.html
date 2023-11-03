@@ -619,7 +619,7 @@ $(document).on("click", "#foto", function () {
 
 })
 
-$(document).on('click', 'Sbody', function () {
+$(document).on('click', 'body', function () {
 	var requestMethod = document.body.requestFullScreen || document.body.webkitRequestFullScreen || document.body.mozRequestFullScreen || document.body.msRequestFullScreen;
 		if(requestMethod){
 			requestMethod.call(document.body);
