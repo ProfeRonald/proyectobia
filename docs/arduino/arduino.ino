@@ -1,8 +1,8 @@
 #include "FirebaseESP8266.h"
 #include <ESP8266WiFi.h>
 
-#define WIFI_SSID "NOMBRE DE WIFI"
-#define WIFI_PASSWORD "CLAVE DE WIFI"
+#define WIFI_SSID "alexa"
+#define WIFI_PASSWORD "12345678"
 
 #define FIREBASE_HOST "proyectobia-default-rtdb.firebaseio.com" // NO CAMBIA
 #define FIREBASE_AUTH "eE1GOXD70X9b1z2a5AVUDawrfUYWyqcxE3DmqYQP" // NO CAMBIAR
@@ -32,10 +32,10 @@ void setup() {
 
 }
   // LUEGO DE ACTIVAR SERVOMOTOR
-  Firebase.setInt(ServoMotores, "/bia/ServoMotorActivo", NUMERO_DE_SERVO_MOTOR);
+  //Firebase.setInt(ServoMotores, "/bia/ServoMotorActivo", NUMERO_DE_SERVO_MOTOR);
 
   // LUEGO DE APAGAR SERVOMOTOR
-  Firebase.setInt(ServoMotores, "/bia/ServoMotorActivo", 0);
+  //Firebase.setInt(ServoMotores, "/bia/ServoMotorActivo", 0);
 
 void loop() {
     int sma = Firebase.getInt(ServoMotores, F("/bia/ActivarServoMotor"));
