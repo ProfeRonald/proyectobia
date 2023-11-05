@@ -182,6 +182,8 @@ section.resume-section .resume-section-content {
       window.addEventListener('contextmenu', function (e) { 
         e.preventDefault(); 
       }, false);
+
+
 		
 </script>
 </head>
@@ -373,7 +375,7 @@ section.resume-section .resume-section-content {
       const foto = userInfo.photoURL;
       const vemail = userInfo.emailVerified;
       const id = userInfo.uid;
-
+alert(email);
       $('.fondoPantalla').hide('slow');
       $("#intro").hide("slow");
       $("#form-login").hide("slow");
@@ -637,6 +639,16 @@ $(document).on('click', 'body', function () {
 			}
     }
 });
+
+/*
+$.ajax({
+    accept: "application/json",
+    type: 'PATCH',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    url: "https://proyectobia-default-rtdb.firebaseio.com/bia.json",
+    data: '{"ServoMotorActivo":1}',
+});*/
 
 </script>
 

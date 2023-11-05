@@ -1,0 +1,7 @@
+API_KEY "AIzaSyAzcS8YluQwARQxfRz4sxkrCvToVaSocf8"
+DATABASE_URL "proyectobia-default-rtdb.firebaseio.com"
+
+USER_EMAIL "elsabrito@elsabrito.com"
+USER_PASSWORD "elsabrito"
+
+FIREBASE_AUTH = "eE1GOXD70X9b1z2a5AVUDawrfUYWyqcxE3DmqYQP";
