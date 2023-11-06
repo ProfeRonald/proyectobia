@@ -177,7 +177,7 @@ section.resume-section .resume-section-content {
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
 		
-		  gtag('config', 'G-TLHS4GKVFZ');
+		  gtag('config', 'G-NQWN14M0GH');
       
       window.addEventListener('contextmenu', function (e) { 
         e.preventDefault(); 
@@ -274,9 +274,11 @@ section.resume-section .resume-section-content {
 	  
 	</div>
 		<div class="col-7 p-0">  
-			
+		
+     
+   
 			<!--style="transform: scale(0.7);margin-top: -141px;margin-left: -190px;width: 160%"-->
-			
+		
 			<section id="proyectos" class="m-0">
 			<div class="resume-section-content">                           
 							<div class="container">
@@ -361,10 +363,23 @@ section.resume-section .resume-section-content {
     measurementId: "G-TLHS4GKVFZ"
   	};
 
+    /*
+    const firebaseConfig = {
+    apiKey: "AIzaSyA3M-oARGrbSznLb8YEIrGLdQsGV_PgwcA",
+    authDomain: "proyecto-bia.firebaseapp.com",
+    projectId: "proyecto-bia",
+    storageBucket: "proyecto-bia.appspot.com",
+    messagingSenderId: "542402440408",
+    appId: "1:542402440408:web:e6b97f16446c6d39cbbbad",
+    measurementId: "G-NQWN14M0GH"
+  };*/
+    
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   firebase.database().ref('bia/ServoMotorActivo').set(0);
+  firebase.database().ref('bia/ServoMotoresActivos').set(0);
   firebase.database().ref('bia/ActivarServoMotor').set(0);
 
   firebase.auth().onAuthStateChanged((userInfo) => {
@@ -375,7 +390,7 @@ section.resume-section .resume-section-content {
       const foto = userInfo.photoURL;
       const vemail = userInfo.emailVerified;
       const id = userInfo.uid;
-alert(email);
+
       $('.fondoPantalla').hide('slow');
       $("#intro").hide("slow");
       $("#form-login").hide("slow");
@@ -386,16 +401,39 @@ alert(email);
       $("#nombre").html(nombre);
 
       $(document).on("click", ".categoria", function () {
-        var cat = $(this).attr('cat');
+        var cat = Number($(this).attr('cat'));
         // Pedir a Arduino que active el servomotor
         firebase.database().ref('bia/ActivarServoMotor').set(cat);
       });
 
-      //var device = navigator.userAgent + navigator.vendor;
-      //alert(device);
-
      function PedirCategoria(cat){
       if(cat > 0){
+      
+      var med = new Array();
+      med[1] = 'de la presión';
+      med[2] = 'de la diabetes';
+      med[3] = 'del dolor';
+      med[4] = 'del asma';
+   
+        if ('speechSynthesis' in window) {
+        var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
+        var icat = Number($('#fecha').attr('cat'));
+        const texto = new SpeechSynthesisUtterance();
+        texto.lang = 'es-DO';
+        texto.text = 'Seleccionando medicamento. Su medicamento ' + med[cat] + ' está siendo dispensado. Recuerde que la dosis de su último medicamento ' + med[icat] + ' fue ' + ultimadosis;
+         window.speechSynthesis.speak(texto);
+         texto.onend = function (event) {
+          const texto2 = new SpeechSynthesisUtterance();
+          texto2.lang = 'es-DO';
+          texto2.text = 'Tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
+          window.speechSynthesis.speak(texto2);
+          texto2.onend = function (event) {
+          CerrarVentana();
+          }
+          }
+        
+        }
+
         $("#intro").hide("slow");
         $("#form-login").hide("slow");
         $("#sesion").hide("slow");
@@ -407,17 +445,19 @@ alert(email);
         $('.fondoPantalla').show();
         firebase.database().ref('bia/UltimaDosis').set({'fecha':Date.now(), 'cat': cat});
         firebase.database().ref('bia/Contador/' + cat).set(firebase.database.ServerValue.increment(1));
-        //SIMULAR CIERRE al dispensar ELIMINAR CUANDO FUNCIONE en arduino
-        setTimeout(function () {
-          firebase.database().ref('bia/ServoMotorActivo').set(0);
-          firebase.database().ref('bia/ActivarServoMotor').set(0);
-        }, 5000);
       }
      }
+
+function CerrarVentana(){
+          firebase.database().ref('bia/ServoMotorActivo').set(0);
+          firebase.database().ref('bia/ServoMotoresActivos').set(0);
+          firebase.database().ref('bia/ActivarServoMotor').set(0);
+}
 
      firebase.database().ref('bia/UltimaDosis').on('value', function(ud) {
     var cat = ud.val().cat;
     $('#fecha').attr('fecha', ud.val().fecha);
+    $('#fecha').attr('cat', cat);
     var titulo = $('#cat-'+cat).find('.titulos:first').text();
         $('#dosis').html('<div class="row mr-2"><div class="col-2"><img class="border border-white rounded-circle" style="width:100%" src="cat' + cat + '-logo.png" /></div><div class="col-9 text-left p-0 mt-2">' + titulo + '</div></div>');
         UltimaDosisHace();
@@ -446,6 +486,17 @@ function UltimaDosisHace(){
         }, 60000);
 }
 
+//RECIBE DE ESP32 PARA ACTIVAR VENTANA
+firebase.database().ref('bia/ServoMotoresActivos').orderByKey().limitToLast(1).on('value', function(motores) {
+    motores.forEach(function (motor) {
+     //if(motor.val()['ServoMotorActivo'] > 0){
+     firebase.database().ref('bia/ServoMotorActivo').set(motor.val()['ServoMotorActivo']);
+   //  }
+    })
+    });
+
+
+
      // Detecta ServoMotorActivo y muestra la ventana o la cierra
      firebase.database().ref('bia/ServoMotorActivo').on('value', function(motor) {
       if(motor.val() > 0){
@@ -459,28 +510,6 @@ function UltimaDosisHace(){
         $('.fondoPantalla').css({'opacity':1});
         $('.fondoPantalla').hide();
       }
-     })
-   
-     //  setTimeout(function () {
-       
-//Arduino detecta la peticion de activar servomotor y lo activa - simulacion - luego eliminar de aqui
-/*async function logMovies() {
-  const imotor = await fetch("https://proyectobia-default-rtdb.firebaseio.com/bia/ActivarServoMotor.json");
-  const aimotor = await imotor.json();
-  console.log(aimotor);
-  firebase.database().ref('bia/ServoMotorActivo').set(aimotor);
-}
-
-$(document).on("click", "#foto", function () {
-  logMovies();
-     });*/
-
-
-       // }, 10000);
-
-     firebase.database().ref('bia/ActivarServoMotor').on('value', function(amotor) { 
-      var vamotor = amotor.val(); // esto debe cambiar por el valor o codigo del servomotor : 1, 2, 3 o 4
-        firebase.database().ref('bia/ServoMotorActivo').set(vamotor);
      })
 
 	function HaceTiempo(fecha){
@@ -639,16 +668,6 @@ $(document).on('click', 'body', function () {
 			}
     }
 });
-
-/*
-$.ajax({
-    accept: "application/json",
-    type: 'PATCH',
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
-    url: "https://proyectobia-default-rtdb.firebaseio.com/bia.json",
-    data: '{"ServoMotorActivo":1}',
-});*/
 
 </script>
 
