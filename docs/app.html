@@ -463,7 +463,7 @@ section.resume-section .resume-section-content {
      }
 
 function CerrarVentana(){
-          firebase.database().ref('bia/ServoMotorActivo').on('value', function(cerrar) {
+          firebase.database().ref('bia/AutoCerrarVentana').on('value', function(cerrar) {
           if(cerrar.val() > 0){
           firebase.database().ref('bia/ServoMotorActivo').set(0);
           firebase.database().ref('bia/ServoMotoresActivos').set(0);
