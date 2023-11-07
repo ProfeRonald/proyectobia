@@ -404,6 +404,7 @@ section.resume-section .resume-section-content {
         var cat = Number($(this).attr('cat'));
         // Pedir a Arduino que active el servomotor
         firebase.database().ref('bia/ActivarServoMotor').set(cat);
+        $('#fecha').attr('sonido', 1);
       });
 
      function PedirCategoria(cat){
@@ -414,8 +415,10 @@ section.resume-section .resume-section-content {
       med[2] = 'de la diabetes';
       med[3] = 'del dolor';
       med[4] = 'del asma';
-   
-        if ('speechSynthesis' in window) {
+      var sonido = Number($('#fecha').attr('sonido'));
+
+        if ('speechSynthesis' in window && sonido == 1) {
+        $('#fecha').removeAttr('sonido');
         var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
         var icat = Number($('#fecha').attr('cat'));
         const texto = new SpeechSynthesisUtterance();
