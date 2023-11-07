@@ -432,7 +432,7 @@ section.resume-section .resume-section-content {
       med[4] = 'del asma';
       var sonido = Number($('#fecha').attr('sonido'));
 
-        if ('speechSynthesis' in window && sonido == 1) {
+        if ('speechSynthesis' in window) {
         
           $('#fecha').removeAttr('sonido');
 
@@ -448,7 +448,7 @@ section.resume-section .resume-section-content {
           texto2.text = 'Tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
           window.speechSynthesis.speak(texto2);
           texto2.onend = function (event) {
-          firebase.database().ref('bia/AutoCerrarVentana').set(1);
+         // firebase.database().ref('bia/AutoCerrarVentana').set(1);
           CerrarVentana();
           }
           }
@@ -475,12 +475,12 @@ section.resume-section .resume-section-content {
      }
 
 function CerrarVentana(){
-          firebase.database().ref('bia/AutoCerrarVentana').on('value', function(cerrar) {
-          if(cerrar.val() > 0){
+       //   firebase.database().ref('bia/AutoCerrarVentana').on('value', function(cerrar) {
+       //   if(cerrar.val() > 0){
           firebase.database().ref('bia/ServoMotorActivo').set(0);
           firebase.database().ref('bia/ServoMotoresActivos').set(0);
           firebase.database().ref('bia/ActivarServoMotor').set(0);
-        }
+       // }
       })
 }
 
