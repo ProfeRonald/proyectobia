@@ -418,7 +418,9 @@ section.resume-section .resume-section-content {
       var sonido = Number($('#fecha').attr('sonido'));
 
         if ('speechSynthesis' in window && sonido == 1) {
-        $('#fecha').removeAttr('sonido');
+        
+          $('#fecha').removeAttr('sonido');
+
         var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
         var icat = Number($('#fecha').attr('cat'));
         const texto = new SpeechSynthesisUtterance();
