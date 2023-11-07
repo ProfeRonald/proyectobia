@@ -28,7 +28,6 @@
         <style>
             body{
                 background-color: #E8102B;
-                overflow: hidden;
                 
             }
 
@@ -49,6 +48,7 @@ section.resume-section .resume-section-content {
   section.resume-section {
     min-height: 100vh;
   }
+  
 }
 @media (min-width: 992px) {
   section.resume-section {
@@ -57,6 +57,10 @@ section.resume-section .resume-section-content {
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
+  body{
+                overflow: hidden;
+                
+            }
 }
 
 .categoria {
@@ -135,6 +139,8 @@ section.resume-section .resume-section-content {
 
 .img-fluid{
 	height: 220px;
+  width: 100%;
+  max-width: 400px;
 	}
 
   .fondoPantalla{
@@ -192,11 +198,11 @@ section.resume-section .resume-section-content {
     
 <div class="fondoPantalla" style="display: none;"></div>
 
-    <div class="border rounded border-info bg-white" style="z-index:9999;width:50%;height:50%;position:absolute;left:25%;top:15%;display:none" id="dispensador">
+    <div class="border rounded border-info bg-white  style="z-index:9999;height:50%;position:absolute;left:25%;top:15%;display:none" id="dispensador">
 
 
       <div class="align-self-center text-center">
-    <h5 class="m-3 bg-white" id="mensajePantalla"></h5>
+    <h5 class="m-3 bg-white col-md-10 col-11" id="mensajePantalla"></h5>
     
   </div>
 </div>  
@@ -228,21 +234,23 @@ section.resume-section .resume-section-content {
 <div id="sesion" style="display: none;" class="m-0">
 
 <div class="row m-0">
-  <div class="col-2 text-white text-left">
+  <div class="col-md-2 col-10 text-white text-md-left text-center">
       <h1 class="display-4 mt-2"><img src="logo2.png" alt="Blinsol"  style="width: 60%;"/></h1>
   </div>
-  <div class="col-10 text-white text-left pt-3">
-	<p class="mb-0 font-weight-bold" style="font-size:3.2rem">Asistente inteligente de salud
+  <div class="col-md-10 col-12 text-white text-left pt-3">
+	<p class="mb-0 font-weight-bold d-md-block d-none" style="font-size:3.2rem">Asistente inteligente de salud
+	</p>
+  <p class="mb-0 font-weight-bold d-block d-md-none" style="font-size:1.3rem">Asistente inteligente de salud
 	</p>
 </div>
 </div>
 
 
 <div class="row">
-	<div class="col-5">
+	<div class="col-md-5 col-12">
 		
 		<div class="row">
-		<div class="col-12">
+		<div class="col-md-12 col-12">
 	  
 			
 			<div class="bg-white shadow rounded overflow-hidden">
@@ -273,7 +281,7 @@ section.resume-section .resume-section-content {
 	  </div>
 	  
 	</div>
-		<div class="col-7 p-0">  
+		<div class="col-md-7 col-12 p-0">  
 		
      
    
@@ -283,8 +291,8 @@ section.resume-section .resume-section-content {
 			<div class="resume-section-content">                           
 							<div class="container">
 							  <div class="row no-gutters">
-								<div class="col-6 p-1">
-								  <a class="categoria mr-3 mb-3" id="cat-1" cat="1" href="#!">
+								<div class="col-md-6 col-12 p-1">
+								  <a class="categoria mr-md-3 mr-0 mb-3" id="cat-1" cat="1" href="#!">
 									<div class="caption">
 									  <div class="caption-content">
 										<div class="h2 text-white titulos">Cuidado del coraz&oacute;n</div>
@@ -294,8 +302,8 @@ section.resume-section .resume-section-content {
 									<img class="img-fluid" src="cat1.png" alt="">
 								  </a>
 								</div>
-								<div class="col-6 p-1">
-								  <a class="categoria mb-3" id="cat-2" cat="2" href="#!">
+								<div class="col-md-6 col-12 p-1">
+								  <a class="categoria mr-0 mb-3" id="cat-2" cat="2" href="#!">
 										<div class="caption">
                       <div class="caption-content">
                       <div class="h2 text-white titulos">Metabolismo</div>
@@ -305,8 +313,8 @@ section.resume-section .resume-section-content {
                     <img class="img-fluid" src="cat2.png" alt="">
 								  </a>
 								</div>
-								<div class="col-6 p-1">
-								  <a class="categoria mr-3 mb-3" id="cat-3" cat="3" href="#!">
+								<div class="col-md-6 col-12 p-1">
+								  <a class="categoria mr-md-3 mr-0" id="cat-3" cat="3" href="#!">
 										<div class="caption">
                       <div class="caption-content">
                       <div class="h2 text-white titulos">Sistema nervioso</div>
@@ -316,8 +324,8 @@ section.resume-section .resume-section-content {
                     <img class="img-fluid" src="cat3.png" alt="">
 								  </a>
 								</div>
-								<div class="col-6 p-1">
-								  <a class="categoria mb-3" id="cat-4" cat="4" href="#!">
+								<div class="col-md-6 col-12 p-1">
+								  <a class="categoria mr-0 mb-3" id="cat-4" cat="4" href="#!">
 										<div class="caption">
                       <div class="caption-content">
                       <div class="h2 text-white titulos">Sistema respiratorio</div>
@@ -333,7 +341,7 @@ section.resume-section .resume-section-content {
       
 		</section>
 
-    <div class="row bg-white border rounded mx-2" style="width: 90%;height: 75px;"><div class="col-2"><img class="pl-3 rounded" style="width:90px" src="logopmebd.png"></div><div class="col-10 font-weight-bold mt-3" style="font-size: 1.4rem">Polit&eacute;nico Maestra Elsa Brito de Dom&iacute;nguez</div></div>
+    <div class="row bg-white border rounded mx-2" style="height: 75px;"><div class="col-md-2 col-3"><img class="pl-3 rounded" style="width:85%" src="logopmebd.png"></div><div class="col-md-8 col-6 font-weight-bold mt-3"><span class="d-none d-md-block" style="font-size: 1.4rem">Polit&eacute;nico Maestra Elsa Brito de Dom&iacute;nguez</span><span class="d-block d-md-none" style="font-size: 0.9rem">Polit&eacute;nico Maestra Elsa Brito de Dom&iacute;nguez</span></div></div>
 	
 	</div>
   
@@ -673,7 +681,7 @@ firebase.database().ref('bia/ServoMotoresActivos').orderByKey().limitToLast(1).o
 
 })
 
-$(document).on('click', 'body', function () {
+$(document).on('click', 'sbody', function () {
 	var requestMethod = document.body.requestFullScreen || document.body.webkitRequestFullScreen || document.body.mozRequestFullScreen || document.body.msRequestFullScreen;
 		if(requestMethod){
 			requestMethod.call(document.body);
