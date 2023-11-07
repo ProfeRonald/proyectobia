@@ -435,6 +435,12 @@ section.resume-section .resume-section-content {
           }
           }
         
+        }else{
+       setTimeout(function () {
+      CerrarVentana();
+        }, 5000);
+
+          
         }
 
         $("#intro").hide("slow");
@@ -497,8 +503,6 @@ firebase.database().ref('bia/ServoMotoresActivos').orderByKey().limitToLast(1).o
    //  }
     })
     });
-
-
 
      // Detecta ServoMotorActivo y muestra la ventana o la cierra
      firebase.database().ref('bia/ServoMotorActivo').on('value', function(motor) {
