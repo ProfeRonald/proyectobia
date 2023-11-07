@@ -389,7 +389,7 @@ section.resume-section .resume-section-content {
   firebase.database().ref('bia/ServoMotorActivo').set(0);
   firebase.database().ref('bia/ServoMotoresActivos').set(0);
   firebase.database().ref('bia/ActivarServoMotor').set(0);
-  firebase.database().ref('bia/AutoCerrarVentana').set(1);
+  firebase.database().ref('bia/NavegadorAlexa').set(0);
 
   firebase.auth().onAuthStateChanged((userInfo) => {
     if (userInfo) {
@@ -413,12 +413,11 @@ section.resume-section .resume-section-content {
         var cat = Number($(this).attr('cat'));
         // Pedir a Arduino que active el servomotor
         firebase.database().ref('bia/ActivarServoMotor').set(cat);
-        $('#fecha').attr('sonido', 1);
         var device = navigator.userAgent + navigator.vendor;
       if (device.indexOf("silk") !== -1){
-        firebase.database().ref('bia/AutoCerrarVentana').set(1);
+        firebase.database().ref('bia/NavegadorAlexa').set(1);
       }else{
-        firebase.database().ref('bia/AutoCerrarVentana').set(0);
+        firebase.database().ref('bia/NavegadorAlexa').set(0);
       }
       });
 
@@ -431,6 +430,17 @@ section.resume-section .resume-section-content {
       med[3] = 'del dolor';
       med[4] = 'del asma';
       var sonido = Number($('#fecha').attr('sonido'));
+
+      var device = navigator.userAgent + navigator.vendor;
+      
+
+          firebase.database().ref('bia/NavegadorAlexa').once('value', function(cerrar) {
+          if(cerrar.val() > 0 && device.indexOf("silk") !== -1){
+       setTimeout(function () {
+      CerrarVentana();
+        }, 6000);
+         }
+        })
 
         if ('speechSynthesis' in window) {
         
@@ -448,18 +458,13 @@ section.resume-section .resume-section-content {
           texto2.text = 'Tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
           window.speechSynthesis.speak(texto2);
           texto2.onend = function (event) {
-         // firebase.database().ref('bia/AutoCerrarVentana').set(1);
+          firebase.database().ref('bia/AutoCerrarVentana').set(0);
           CerrarVentana();
           }
           }
         
-        }else{
-       setTimeout(function () {
-      CerrarVentana();
-        }, 6000);
-          
         }
-
+      
         $("#intro").hide("slow");
         $("#form-login").hide("slow");
         $("#sesion").hide("slow");
@@ -475,13 +480,11 @@ section.resume-section .resume-section-content {
      }
 
 function CerrarVentana(){
-       //   firebase.database().ref('bia/AutoCerrarVentana').on('value', function(cerrar) {
-       //   if(cerrar.val() > 0){
+      
           firebase.database().ref('bia/ServoMotorActivo').set(0);
           firebase.database().ref('bia/ServoMotoresActivos').set(0);
           firebase.database().ref('bia/ActivarServoMotor').set(0);
-       // }
-      //})
+     
 }
 
      firebase.database().ref('bia/UltimaDosis').on('value', function(ud) {
