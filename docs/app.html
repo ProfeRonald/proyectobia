@@ -414,7 +414,12 @@ section.resume-section .resume-section-content {
         // Pedir a Arduino que active el servomotor
         firebase.database().ref('bia/ActivarServoMotor').set(cat);
         $('#fecha').attr('sonido', 1);
+        var device = navigator.userAgent + navigator.vendor;
+      if (device.indexOf("silk") !== -1){
+        firebase.database().ref('bia/AutoCerrarVentana').set(1);
+      }else{
         firebase.database().ref('bia/AutoCerrarVentana').set(0);
+      }
       });
 
      function PedirCategoria(cat){
@@ -452,7 +457,6 @@ section.resume-section .resume-section-content {
        setTimeout(function () {
       CerrarVentana();
         }, 6000);
-
           
         }
 
