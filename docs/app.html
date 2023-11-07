@@ -451,7 +451,7 @@ section.resume-section .resume-section-content {
         }else{
        setTimeout(function () {
       CerrarVentana();
-        }, 5000);
+        }, 6000);
 
           
         }
@@ -681,7 +681,7 @@ firebase.database().ref('bia/ServoMotoresActivos').orderByKey().limitToLast(1).o
 
 })
 
-$(document).on('click', 'sbody', function () {
+$(document).on('click', 'body', function () {
 	var requestMethod = document.body.requestFullScreen || document.body.webkitRequestFullScreen || document.body.mozRequestFullScreen || document.body.msRequestFullScreen;
 		if(requestMethod){
 			requestMethod.call(document.body);
