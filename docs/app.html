@@ -381,6 +381,7 @@ section.resume-section .resume-section-content {
   firebase.database().ref('bia/ServoMotorActivo').set(0);
   firebase.database().ref('bia/ServoMotoresActivos').set(0);
   firebase.database().ref('bia/ActivarServoMotor').set(0);
+  firebase.database().ref('bia/AutoCerrarVentana').set(1);
 
   firebase.auth().onAuthStateChanged((userInfo) => {
     if (userInfo) {
@@ -405,6 +406,7 @@ section.resume-section .resume-section-content {
         // Pedir a Arduino que active el servomotor
         firebase.database().ref('bia/ActivarServoMotor').set(cat);
         $('#fecha').attr('sonido', 1);
+        firebase.database().ref('bia/AutoCerrarVentana').set(0);
       });
 
      function PedirCategoria(cat){
@@ -433,6 +435,7 @@ section.resume-section .resume-section-content {
           texto2.text = 'Tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
           window.speechSynthesis.speak(texto2);
           texto2.onend = function (event) {
+          firebase.database().ref('bia/AutoCerrarVentana').set(1);
           CerrarVentana();
           }
           }
@@ -460,9 +463,13 @@ section.resume-section .resume-section-content {
      }
 
 function CerrarVentana(){
+          firebase.database().ref('bia/ServoMotorActivo').on('value', function(cerrar) {
+          if(cerrar.val() > 0){
           firebase.database().ref('bia/ServoMotorActivo').set(0);
           firebase.database().ref('bia/ServoMotoresActivos').set(0);
           firebase.database().ref('bia/ActivarServoMotor').set(0);
+        }
+      })
 }
 
      firebase.database().ref('bia/UltimaDosis').on('value', function(ud) {
