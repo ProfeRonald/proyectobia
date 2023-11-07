@@ -429,10 +429,8 @@ section.resume-section .resume-section-content {
       med[2] = 'de la diabetes';
       med[3] = 'del dolor';
       med[4] = 'del asma';
-      var sonido = Number($('#fecha').attr('sonido'));
 
       var device = navigator.userAgent + navigator.vendor;
-      
 
           firebase.database().ref('bia/NavegadorAlexa').once('value', function(cerrar) {
           if(cerrar.val() > 0 && device.indexOf("silk") !== -1){
@@ -440,11 +438,9 @@ section.resume-section .resume-section-content {
       CerrarVentana();
         }, 6000);
          }
-        })
+        })  
 
         if ('speechSynthesis' in window) {
-        
-          $('#fecha').removeAttr('sonido');
 
         var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
         var icat = Number($('#fecha').attr('cat'));
