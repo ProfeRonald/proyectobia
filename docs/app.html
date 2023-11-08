@@ -294,7 +294,7 @@ section.resume-section .resume-section-content {
 								<div class="col-md-6 col-12 p-1">
 								  <a class="categoria mr-md-3 mr-0 mb-3" id="cat-1" cat="1" href="#!">
 									<div class="caption">
-									  <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-primary btn-sm border recargar" cat="1"><div id="cant-1" class="text-white cantidad" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
+									  <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-primary btn-sm border recargar" cat="1"><div id="cant-1" cant="" class="text-white cantidad" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
 										<div class="h2 text-white titulos">Cuidado del coraz&oacute;n</div>
 										<div class="subheading mb-2 mt-0 p-0">HIPERTENSI&Oacute;N - PRESI&Oacute;N: CAPSULAS</div>
 									  </div>
@@ -305,7 +305,7 @@ section.resume-section .resume-section-content {
 								<div class="col-md-6 col-12 p-1">
 								  <a class="categoria mr-0 mb-3" id="cat-2" cat="2" href="#!">
 										<div class="caption">
-                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-info btn-sm border recargar" cat="2"><div id="cant-2" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
+                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-info btn-sm border recargar" cat="2"><div id="cant-2" cant="" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
                       <div class="h2 text-white titulos">Metabolismo</div>
                       <div class="subheading mb-2 mt-0 p-0">DIABETES: COMPRIMIDOS</div>
                       </div>
@@ -316,7 +316,7 @@ section.resume-section .resume-section-content {
 								<div class="col-md-6 col-12 p-1">
 								  <a class="categoria mr-md-3 mr-0" id="cat-3" cat="3" href="#!">
 										<div class="caption">
-                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-warning btn-sm border recargar" cat="3"><div id="cant-3" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
+                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-warning btn-sm border recargar" cat="3"><div id="cant-3" cant="" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
                       <div class="h2 text-white titulos">Sistema nervioso</div>
                       <div class="subheading mb-2 mt-0 p-0">PARKINSON - DOLOR - INFLAMACI&Oacute;N: CAPLETAS</div>
                       </div>
@@ -327,7 +327,7 @@ section.resume-section .resume-section-content {
 								<div class="col-md-6 col-12 p-1">
 								  <a class="categoria mr-0 mb-3" id="cat-4" cat="4" href="#!">
 										<div class="caption">
-                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-success btn-sm border recargar" cat="4"><div id="cant-4" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
+                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-success btn-sm border recargar" cat="4"><div id="cant-4" cant="" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
                       <div class="h2 text-white titulos">Sistema respiratorio</div>
                       <div class="subheading mb-2 mt-0 p-0">ASMA - GRIPE - FIEBRE: TABLETAS</div>
                       </div>
@@ -577,7 +577,7 @@ $('.cantidad').hide();
 })
 
 $(document).on("click", ".recargar", function () {
-var cat = Number($(this).attr('cant'));
+var cat = Number($(this).attr('cat'));
 firebase.database().ref('bia/ContadorTemp' + cat).set(0);
 $('.recargar').hide();
 $('.cantidad').show();
