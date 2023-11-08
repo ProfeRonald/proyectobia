@@ -258,7 +258,7 @@ section.resume-section .resume-section-content {
 					<div class="media align-items-end profile-header">
 						<div class="profile mr-3 ml-1"><img id="foto" src="user.png" alt="Foto" width="110" height="110" class="rounded mb-2 img-thumbnail" /></div>
 						<div class="media-body mb-5 text-white">
-							<h4 class="mt-0 mb-0" id="nombre"></h4>
+							<h4 class="mt-0 mb-0"><span  id="nombre"></span> | <span style="cursor:pointer" class="mt-0 mb-0 fa fa-refresh" id="recargar"></span></h4>
 						</div>
             <div class="media-body mb-5 text-white">
 							<h4 class="mt-0 mb-0"><div class="text-right mr-3"> <i class="fa-solid fa-right-from-bracket fa-3x text-white mt-2" id="salir" style="cursor:pointer"></i></div></h4>
@@ -570,6 +570,11 @@ firebase.database().ref('bia/ActivarAudioAlexa').orderByKey().limitToLast(1).on(
      firebase.database().ref('bia/AudioAlexa').set(aud.val()['AudioAlexa']);
   })
 });*/
+
+$(document).on("click", "#recargar", function () {
+$('.recargar').show();
+$('.cantidad').hide();
+})
 
 $(document).on("click", ".recargar", function () {
 var cat = Number($(this).attr('cant'));
