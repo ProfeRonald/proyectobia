@@ -1,0 +1,8 @@
+[LOGO BIA]
+
+BIA: Es un dispositivo con el fin de tener un control de la salud personal de forma inteligente. Dispone de cuatro modulos de dispensación de medicamentos donde se pueden colocar diferentes dosis de los medicamentos personales. Funciona con comandos de voz de los asistentes más conocidos, como Goole Home, Apple Home, o Alexa de Amazon,  además cuenta con una aplicación multiplataforma (Android, iOs, Linux, Windows, ...) que registra las estadísticas de las dosis de medicamnentos, horario y rutinas, así como las visitas al médido.
+
+Amplia esta información escaneando el codigo:
+[CODIGO QR]
+
+[LOGO PMEBD] Politécnico Maestra Elsa Brito de Domínguez

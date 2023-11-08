@@ -294,7 +294,7 @@ section.resume-section .resume-section-content {
 								<div class="col-md-6 col-12 p-1">
 								  <a class="categoria mr-md-3 mr-0 mb-3" id="cat-1" cat="1" href="#!">
 									<div class="caption">
-									  <div class="caption-content">
+									  <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-primary btn-sm border recargar" cat="1"><div id="cant-1" class="text-white cantidad" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
 										<div class="h2 text-white titulos">Cuidado del coraz&oacute;n</div>
 										<div class="subheading mb-2 mt-0 p-0">HIPERTENSI&Oacute;N - PRESI&Oacute;N: CAPSULAS</div>
 									  </div>
@@ -305,7 +305,7 @@ section.resume-section .resume-section-content {
 								<div class="col-md-6 col-12 p-1">
 								  <a class="categoria mr-0 mb-3" id="cat-2" cat="2" href="#!">
 										<div class="caption">
-                      <div class="caption-content">
+                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-info btn-sm border recargar" cat="2"><div id="cant-2" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
                       <div class="h2 text-white titulos">Metabolismo</div>
                       <div class="subheading mb-2 mt-0 p-0">DIABETES: COMPRIMIDOS</div>
                       </div>
@@ -316,7 +316,7 @@ section.resume-section .resume-section-content {
 								<div class="col-md-6 col-12 p-1">
 								  <a class="categoria mr-md-3 mr-0" id="cat-3" cat="3" href="#!">
 										<div class="caption">
-                      <div class="caption-content">
+                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-warning btn-sm border recargar" cat="3"><div id="cant-3" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
                       <div class="h2 text-white titulos">Sistema nervioso</div>
                       <div class="subheading mb-2 mt-0 p-0">PARKINSON - DOLOR - INFLAMACI&Oacute;N: CAPLETAS</div>
                       </div>
@@ -327,7 +327,7 @@ section.resume-section .resume-section-content {
 								<div class="col-md-6 col-12 p-1">
 								  <a class="categoria mr-0 mb-3" id="cat-4" cat="4" href="#!">
 										<div class="caption">
-                      <div class="caption-content">
+                      <div class="caption-content"><input type="button" value="RECARGAR 10" style="z-index:999;position:absolute;top:30px;display:none" class="btn btn-success btn-sm border recargar" cat="4"><div id="cant-4" class="text-white" style="opacity:0.4;position:absolute;top:0px;font-size: 3rem"></div>
                       <div class="h2 text-white titulos">Sistema respiratorio</div>
                       <div class="subheading mb-2 mt-0 p-0">ASMA - GRIPE - FIEBRE: TABLETAS</div>
                       </div>
@@ -360,7 +360,8 @@ section.resume-section .resume-section-content {
 <script>
 
 	$(document).ready(function () {
-	
+    //HWDY6F66
+	/*
 		const firebaseConfig = {
     apiKey: "AIzaSyAzcS8YluQwARQxfRz4sxkrCvToVaSocf8",
     authDomain: "proyectobia.firebaseapp.com",
@@ -370,6 +371,18 @@ section.resume-section .resume-section-content {
     appId: "1:692749180937:web:8046278c937d2f972118d8",
     measurementId: "G-TLHS4GKVFZ"
   	};
+    
+    */
+
+    const firebaseConfig = {
+apiKey: "AIzaSyA3M-oARGrbSznLb8YEIrGLdQsGV_PgwcA",
+authDomain: "proyecto-bia.firebaseapp.com",
+projectId: "proyecto-bia",
+storageBucket: "proyecto-bia.appspot.com",
+messagingSenderId: "542402440408",
+appId: "1:542402440408:web:e6b97f16446c6d39cbbbad",
+measurementId: "G-NQWN14M0GH"
+};
 
   firebase.initializeApp(firebaseConfig);
 
@@ -433,6 +446,7 @@ function ApagarTodo(){
         $('.fondoPantalla').show();
         firebase.database().ref('bia/UltimaDosis').set({'fecha':Date.now(), 'cat': cat});
         firebase.database().ref('bia/Contador/' + cat).set(firebase.database.ServerValue.increment(1));
+        firebase.database().ref('bia/ContadorTemp/' + cat).set(firebase.database.ServerValue.increment(1));
         firebase.database().ref('bia/ActivarAbrirVentana').set(0);
         firebase.database().ref('bia/VentanasActivas').set(0);
       }
@@ -449,19 +463,25 @@ function AudioApp(cat){
     med[3] = 'del dolor';
     med[4] = 'del asma';
 
-var cantidad =  Number($('#cant-'+cat).attr('cant')) + 1;
-var total_cant = 20 -  cantidad;
+var cantidad =  Number($('#cantidad-'+cat).attr('cant')) + 1;
+var cant =  Number($('#cant-'+cat).attr('cant'));
+var total_cant = 10 - cant;
 var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
 var icat = Number($('#fecha').attr('cat')); 
   window.speechSynthesis.cancel();
   const texto1 = new SpeechSynthesisUtterance();
-  texto1.lang = 'es-US';
+  texto1.lang = 'es-DO';
   texto1.text = 'Seleccionando medicamento. Su medicamento ' + med[cat] + ' está siendo dispensado. Ha tomado un total de ' + cantidad + ' dosis, incluyendo esta. Le restan un total de ' + total_cant + ' dosis de su medicamento ' + med[cat];
   window.speechSynthesis.speak(texto1);
   texto1.onend = function (event) {
   const texto2 = new SpeechSynthesisUtterance();
-  texto2.lang = 'es-US';
-  texto2.text = 'Recuerde que la dosis de su último medicamento ' + med[icat] + ' fue ' + ultimadosis + '. Tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
+  texto2.lang = 'es-DO';
+  var text2 = '';
+  if(total_cant < 3) {
+    text2 += 'Debe recargar su dispositivo. ';
+  }
+  text2 += 'Recuerde que la dosis de su último medicamento ' + med[icat] + ' fue ' + ultimadosis + ', tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
+  texto2.text = text2;
   window.speechSynthesis.speak(texto2);
    texto2.onend = function (event) {
     firebase.database().ref('bia/CerrarVentana').set(1);
@@ -489,7 +509,7 @@ med[2] = 'de la diabetes';
 med[3] = 'del dolor';
 med[4] = 'del asma';
 
-var cantidad =  Number($('#cant-'+cat).attr('cant')) + 1;
+var cantidad =  Number($('#cantidad-'+cat).attr('cant')) + 1;
 var total_cant = 20 -  cantidad;
 var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
 var icat = Number($('#fecha').attr('cat'));
@@ -551,6 +571,12 @@ firebase.database().ref('bia/ActivarAudioAlexa').orderByKey().limitToLast(1).on(
   })
 });*/
 
+$(document).on("click", ".recargar", function () {
+var cat = Number($(this).attr('cant'));
+firebase.database().ref('bia/ContadorTemp' + cat).set(0);
+$('.recargar').hide();
+$('.cantidad').show();
+})
 
 function CerrarVentana(){
         $('#dispensador').hide('slow');
@@ -580,11 +606,21 @@ function CerrarVentana(){
         if(con.key > 0){
       var cat = con.key;
       var titulo = $('#cat-'+cat).find('.titulos:first').text();
-      dosiscats += '<div class="row mr-2 py-1 fondoCat'+cat+'" style="width:103%"><div class="col-2"><img class="border border-white rounded-circle" style="width:100%" src="cat' + cat + '-logo.png" /></div><div id="cant-'+cat+'" cant="' + con.val() + '" class="col-9 text-left p-0 mt-2">' + titulo + ': ' + con.val() + ' dosis.</div></div>';
+      dosiscats += '<div class="row mr-2 py-1 fondoCat'+cat+'" style="width:103%"><div class="col-2"><img class="border border-white rounded-circle" style="width:100%" src="cat' + cat + '-logo.png" /></div><div id="cantidad-'+cat+'" cant="' + con.val() + '" class="col-9 text-left p-0 mt-2">' + titulo + ': ' + con.val() + ' dosis.</div></div>';
         }
       })
      
       $('#dosiscats').html(dosiscats);
+    })
+
+    firebase.database().ref('bia/ContadorTemp').on('value', function(constemp) {
+     
+      constemp.forEach(function (contemp) {
+        if(contemp.key > 0 && contemp.key < 11){
+      var cattemp = contemp.key;
+      $('#cant-'+contemp.key).attr('cant', (10 - contemp.val()));
+        }
+      })
     })
 
 function UltimaDosisHace(){
