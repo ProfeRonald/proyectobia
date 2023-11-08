@@ -372,6 +372,22 @@ section.resume-section .resume-section-content {
   	};
 
   firebase.initializeApp(firebaseConfig);
+
+
+  
+function ApagarTodo(){
+  firebase.database().ref('bia/ActivarAbrirVentana').set(0);
+  firebase.database().ref('bia/NavegadorAlexa').set(0);
+  firebase.database().ref('bia/ActivarAudioApp').set(0);
+  firebase.database().ref('bia/AbrirVentana').set(0);
+  firebase.database().ref('bia/VentanasActivas').set(0);
+  firebase.database().ref('bia/AudioApp').set(0);
+  firebase.database().ref('bia/ActivarAudioApp').set(0);
+  firebase.database().ref('bia/AudioAlexa').set(0);
+  firebase.database().ref('bia/ActivarAudioAlexa').set(0);
+}
+
+
   ApagarTodo();
   
   firebase.auth().onAuthStateChanged((userInfo) => {
@@ -536,24 +552,6 @@ function CerrarVentana(){
         $('.fondoPantalla').hide();
         ApagarTodo();
 }
-
-function ApagarTodo(){
-  firebase.database().ref('bia/ActivarAbrirVentana').set(0);
-  firebase.database().ref('bia/NavegadorAlexa').set(0);
-  firebase.database().ref('bia/ActivarAudioApp').set(0);
-  firebase.database().ref('bia/AbrirVentana').set(0);
-  firebase.database().ref('bia/VentanasActivas').set(0);
-  firebase.database().ref('bia/AudioApp').set(0);
-  firebase.database().ref('bia/ActivarAudioApp').set(0);
-  firebase.database().ref('bia/AudioAlexa').set(0);
-  firebase.database().ref('bia/ActivarAudioAlexa').set(0);
-}
-
-
-
-
-
-
 
      firebase.database().ref('bia/UltimaDosis').on('value', function(ud) {
     var cat = ud.val().cat;
