@@ -379,7 +379,6 @@ function ApagarTodo(){
   firebase.database().ref('bia/AbrirVentana').set(0);
   firebase.database().ref('bia/CerrarVentana').set(0);
   firebase.database().ref('bia/VentanasActivas').set(0);
-  window.speechSynthesis.cancel();
   //firebase.database().ref('bia/AudioApp').set(0);
   //firebase.database().ref('bia/ActivarAudioApp').set(0);
   //firebase.database().ref('bia/AudioAlexa').set(0);
@@ -452,8 +451,7 @@ function AudioApp(cat){
 var cantidad =  Number($('#cant-'+cat).attr('cant')) + 1;
 var total_cant = 20 -  cantidad;
 var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
-var icat = Number($('#fecha').attr('cat')); 
-  window.speechSynthesis.cancel();
+var icat = Number($('#fecha').attr('cat'));
   const texto1 = new SpeechSynthesisUtterance();
   texto1.lang = 'es-DO';
   texto1.text = 'Seleccionando medicamento. Su medicamento ' + med[cat] + ' está siendo dispensado. Ha tomado un total de ' + cantidad + ' dosis, incluyendo esta. Le restan un total de ' + total_cant + ' dosis de su medicamento ' + med[cat];
@@ -740,7 +738,7 @@ function UltimaDosisHace(){
 
 })
 
-$(document).on('click', 'body', function () {
+$(document).on('click', 'sbody', function () {
 	var requestMethod = document.body.requestFullScreen || document.body.webkitRequestFullScreen || document.body.mozRequestFullScreen || document.body.msRequestFullScreen;
 		if(requestMethod){
 			requestMethod.call(document.body);
