@@ -371,26 +371,9 @@ section.resume-section .resume-section-content {
     measurementId: "G-TLHS4GKVFZ"
   	};
 
-    /*
-    const firebaseConfig = {
-    apiKey: "AIzaSyA3M-oARGrbSznLb8YEIrGLdQsGV_PgwcA",
-    authDomain: "proyecto-bia.firebaseapp.com",
-    projectId: "proyecto-bia",
-    storageBucket: "proyecto-bia.appspot.com",
-    messagingSenderId: "542402440408",
-    appId: "1:542402440408:web:e6b97f16446c6d39cbbbad",
-    measurementId: "G-NQWN14M0GH"
-  };*/
-    
-
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
-  firebase.database().ref('bia/ServoMotorActivo').set(0);
-  firebase.database().ref('bia/ServoMotoresActivos').set(0);
-  firebase.database().ref('bia/ActivarServoMotor').set(0);
-  firebase.database().ref('bia/NavegadorAlexa').set(0);
-
+  ApagarTodo();
+  
   firebase.auth().onAuthStateChanged((userInfo) => {
     if (userInfo) {
 
@@ -406,61 +389,24 @@ section.resume-section .resume-section-content {
       $("#sesion").show("slow");
 
 	  $("#foto").attr("src", foto);
-      $("#foto").attr("alt", nombre);
-      $("#nombre").html(nombre);
+    $("#foto").attr("alt", nombre);
+    $("#nombre").html(nombre);
 
       $(document).on("click", ".categoria", function () {
         var cat = Number($(this).attr('cat'));
         // Pedir a Arduino que active el servomotor
-        firebase.database().ref('bia/ActivarServoMotor').set(cat);
-        var device = navigator.userAgent + navigator.vendor;
+        firebase.database().ref('bia/ActivarAbrirVentana').set(cat);
+       var device = navigator.userAgent + navigator.vendor;
       if (device.indexOf("silk") !== -1){
         firebase.database().ref('bia/NavegadorAlexa').set(1);
       }else{
         firebase.database().ref('bia/NavegadorAlexa').set(0);
       }
+    firebase.database().ref('bia/ActivarAudioApp').set(1);
       });
 
-     function PedirCategoria(cat){
+      function AbrirVentana(cat){
       if(cat > 0){
-      
-      var med = new Array();
-      med[1] = 'de la presión';
-      med[2] = 'de la diabetes';
-      med[3] = 'del dolor';
-      med[4] = 'del asma';
-
-      var device = navigator.userAgent + navigator.vendor;
-
-          firebase.database().ref('bia/NavegadorAlexa').once('value', function(cerrar) {
-          if(cerrar.val() > 0 && device.indexOf("silk") !== -1){
-       setTimeout(function () {
-      CerrarVentana();
-        }, 6000);
-         }
-        })  
-
-        if ('speechSynthesis' in window) {
-
-        var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
-        var icat = Number($('#fecha').attr('cat'));
-        const texto = new SpeechSynthesisUtterance();
-        texto.lang = 'es-DO';
-        texto.text = 'Seleccionando medicamento. Su medicamento ' + med[cat] + ' está siendo dispensado. Recuerde que la dosis de su último medicamento ' + med[icat] + ' fue ' + ultimadosis;
-         window.speechSynthesis.speak(texto);
-         texto.onend = function (event) {
-          const texto2 = new SpeechSynthesisUtterance();
-          texto2.lang = 'es-DO';
-          texto2.text = 'Tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
-          window.speechSynthesis.speak(texto2);
-          texto2.onend = function (event) {
-          firebase.database().ref('bia/AutoCerrarVentana').set(0);
-          CerrarVentana();
-          }
-          }
-        
-        }
-      
         $("#intro").hide("slow");
         $("#form-login").hide("slow");
         $("#sesion").hide("slow");
@@ -473,15 +419,141 @@ section.resume-section .resume-section-content {
         firebase.database().ref('bia/UltimaDosis').set({'fecha':Date.now(), 'cat': cat});
         firebase.database().ref('bia/Contador/' + cat).set(firebase.database.ServerValue.increment(1));
       }
+    }
+
+    
+function AudioApp(cat){
+
+    var med = new Array();
+    med[1] = 'de la presión';
+    med[2] = 'de la diabetes';
+    med[3] = 'del dolor';
+    med[4] = 'del asma';
+
+var cantidad =  Number($('#cant-'+cat).attr('cant')) + 1;
+var total_cant = 20 -  cantidad;
+var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
+var icat = Number($('#fecha').attr('cat'));
+
+  if ('speechSynthesis' in window) {
+  const texto = new SpeechSynthesisUtterance();
+  texto.lang = 'es-DO';
+  texto.text = 'Seleccionando medicamento. Su medicamento ' + med[cat] + ' está siendo dispensado. Ha tomado un total de ' + cantidad + ' dosis, incluyendo esta. Le restan un total de ' + total_cant + ' dosis de su medicamento ' + med[cat] + '. Recuerde que la dosis de su último medicamento ' + med[icat] + ' fue ' + ultimadosis;
+   window.speechSynthesis.speak(texto);
+   texto.onend = function (event) {
+    const texto2 = new SpeechSynthesisUtterance();
+    texto2.lang = 'es-DO';
+    texto2.text = 'Tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
+    window.speechSynthesis.speak(texto2);
+    texto2.onend = function (event) {
+      firebase.database().ref('bia/AbrirVentana').set(0);
+    }
+    }
+  
+  }else{
+    setTimeout(function () {
+      firebase.database().ref('bia/AbrirVentana').set(0);
+    }, 6000);
      }
 
-function CerrarVentana(){
-      
-          firebase.database().ref('bia/ServoMotorActivo').set(0);
-          firebase.database().ref('bia/ServoMotoresActivos').set(0);
-          firebase.database().ref('bia/ActivarServoMotor').set(0);
-     
 }
+
+
+
+function AudioAlexa(cat){
+
+var med = new Array();
+med[1] = 'de la presión';
+med[2] = 'de la diabetes';
+med[3] = 'del dolor';
+med[4] = 'del asma';
+
+var cantidad =  Number($('#cant-'+cat).attr('cant')) + 1;
+var total_cant = 20 -  cantidad;
+var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
+var icat = Number($('#fecha').attr('cat'));
+
+if ('speechSynthesis' in window) {
+    const texto = new SpeechSynthesisUtterance();
+    texto.lang = 'es-DO';
+    texto.text = 'Ha tomado un total de ' + cantidad + ' dosis, incluyendo esta. Le restan un total de ' + total_cant + ' dosis de su medicamento ' + med[cat] + '. Recuerde que la dosis de su último medicamento ' + med[icat] + ' fue ' + ultimadosis;
+    window.speechSynthesis.speak(texto);
+    firebase.database().ref('bia/AbrirVentana').set(0);
+ }else{
+setTimeout(function () {
+  firebase.database().ref('bia/AbrirVentana').set(0);
+}, 2000);
+ }
+
+}
+
+firebase.database().ref('bia/AbrirVentana').once('value', function(ventana) {
+        if(ventana.val() > 0){
+          AbrirVentana(ventana.val());
+        }else{
+          CerrarVentana();
+        }
+})
+
+firebase.database().ref('bia/VentanasActivas').orderByKey().limitToLast(1).on('value', function(ventanas) {
+  ventanas.forEach(function (vent) {
+     firebase.database().ref('bia/AbrirVentana').set(vent.val()['AbrirVentana']);
+  })
+});
+
+firebase.database().ref('bia/AudioApp').once('value', function(audioapp) {
+        if(audioapp.val() > 0){
+          AudioApp(audioapp.val());
+        }
+})
+
+firebase.database().ref('bia/ActivarAudioApp').orderByKey().limitToLast(1).on('value', function(audiosapp) {
+  audiosapp.forEach(function (audapp) {
+     firebase.database().ref('bia/AudioApp').set(audapp.val()['AudioApp']);
+  })
+});
+
+firebase.database().ref('bia/AudioAlexa').once('value', function(audio) {
+        if(audio.val() > 0){
+          AudioAlexa(audio.val());
+        }
+})
+
+firebase.database().ref('bia/ActivarAudioAlexa').orderByKey().limitToLast(1).on('value', function(audios) {
+  audios.forEach(function (aud) {
+     firebase.database().ref('bia/AudioAlexa').set(aud.val()['AudioAlexa']);
+  })
+});
+
+
+function CerrarVentana(){
+        $('#dispensador').hide('slow');
+        $("#intro").hide("slow");
+        $("#form-login").hide("slow");
+        $("#sesion").show("slow");
+        $('#mensaje_cat').text('');
+        $('.fondoPantalla').css({'opacity':1});
+        $('.fondoPantalla').hide();
+        ApagarTodo();
+}
+
+function ApagarTodo(){
+  firebase.database().ref('bia/ActivarAbrirVentana').set(0);
+  firebase.database().ref('bia/NavegadorAlexa').set(0);
+  firebase.database().ref('bia/ActivarAudioApp').set(0);
+  firebase.database().ref('bia/AbrirVentana').set(0);
+  firebase.database().ref('bia/VentanasActivas').set(0);
+  firebase.database().ref('bia/AudioApp').set(0);
+  firebase.database().ref('bia/ActivarAudioApp').set(0);
+  firebase.database().ref('bia/AudioAlexa').set(0);
+  firebase.database().ref('bia/ActivarAudioAlexa').set(0);
+}
+
+
+
+
+
+
 
      firebase.database().ref('bia/UltimaDosis').on('value', function(ud) {
     var cat = ud.val().cat;
@@ -500,7 +572,7 @@ function CerrarVentana(){
         if(con.key > 0){
       var cat = con.key;
       var titulo = $('#cat-'+cat).find('.titulos:first').text();
-      dosiscats += '<div class="row mr-2 py-1 fondoCat'+cat+'" style="width:103%"><div class="col-2"><img class="border border-white rounded-circle" style="width:100%" src="cat' + cat + '-logo.png" /></div><div class="col-9 text-left p-0 mt-2">' + titulo + ': ' + con.val() + ' dosis.</div></div>';
+      dosiscats += '<div class="row mr-2 py-1 fondoCat'+cat+'" style="width:103%"><div class="col-2"><img class="border border-white rounded-circle" style="width:100%" src="cat' + cat + '-logo.png" /></div><div id="cant-'+cat+'" cant="' + con.val() + '" class="col-9 text-left p-0 mt-2">' + titulo + ': ' + con.val() + ' dosis.</div></div>';
         }
       })
      
@@ -514,30 +586,6 @@ function UltimaDosisHace(){
       UltimaDosisHace();
         }, 60000);
 }
-
-//RECIBE DE ESP32 PARA ACTIVAR VENTANA
-firebase.database().ref('bia/ServoMotoresActivos').orderByKey().limitToLast(1).on('value', function(motores) {
-    motores.forEach(function (motor) {
-     //if(motor.val()['ServoMotorActivo'] > 0){
-     firebase.database().ref('bia/ServoMotorActivo').set(motor.val()['ServoMotorActivo']);
-   //  }
-    })
-    });
-
-     // Detecta ServoMotorActivo y muestra la ventana o la cierra
-     firebase.database().ref('bia/ServoMotorActivo').on('value', function(motor) {
-      if(motor.val() > 0){
-      PedirCategoria(motor.val());
-      }else{
-        $('#dispensador').hide('slow');
-        $("#intro").hide("slow");
-        $("#form-login").hide("slow");
-        $("#sesion").show("slow");
-        $('#mensaje_cat').text('');
-        $('.fondoPantalla').css({'opacity':1});
-        $('.fondoPantalla').hide();
-      }
-     })
 
 	function HaceTiempo(fecha){
 					
