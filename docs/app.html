@@ -455,12 +455,12 @@ var ultimadosis = HaceTiempo(Number($('#fecha').attr('fecha')));
 var icat = Number($('#fecha').attr('cat')); 
   window.speechSynthesis.cancel();
   const texto1 = new SpeechSynthesisUtterance();
-  texto1.lang = 'es-DO';
+  texto1.lang = 'es-US';
   texto1.text = 'Seleccionando medicamento. Su medicamento ' + med[cat] + ' está siendo dispensado. Ha tomado un total de ' + cantidad + ' dosis, incluyendo esta. Le restan un total de ' + total_cant + ' dosis de su medicamento ' + med[cat];
   window.speechSynthesis.speak(texto1);
   texto1.onend = function (event) {
   const texto2 = new SpeechSynthesisUtterance();
-  texto2.lang = 'es-DO';
+  texto2.lang = 'es-US';
   texto2.text = 'Recuerde que la dosis de su último medicamento ' + med[icat] + ' fue ' + ultimadosis + '. Tome su medicamento de la boquilla de salida. Y recuerde visitar a su médico ' + med[icat];
   window.speechSynthesis.speak(texto2);
    texto2.onend = function (event) {
