@@ -584,7 +584,7 @@ $('.cantidad').hide();
 
 $(document).on("click", ".recargar", function () {
 var cat = Number($(this).attr('cat'));
-firebase.database().ref('bia/ContadorTemp' + cat).set(0);
+//firebase.database().ref('bia/ContadorTemp' + cat).set(0);
 $('.recargar').hide();
 $('.cantidad').show();
 })
@@ -632,6 +632,10 @@ function CerrarVentana(){
         if(cant > 0 && cant < 11){
       $('#cant-'+cat).attr('cant', (10 - cant));
       $('#cant-'+cat).text((10 - cant));
+        }else{
+          firebase.database().ref('bia/ContadorTemp' + cat).set(0);
+          $('#cant-'+cat).attr('cant', 10);
+          $('#cant-'+cat).text(cant);
         }
       })
     })
