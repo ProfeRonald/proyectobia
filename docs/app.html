@@ -619,11 +619,11 @@ function CerrarVentana(){
     firebase.database().ref('bia/ContadorTemp').on('value', function(constemp) {
     
       constemp.forEach(function (contemp) {
-        if(contemp.key > 0 && contemp.key < 11){
-          console.log(contemp.key);
-      var cattemp = contemp.key;
-      $('#cant-'+contemp.key).attr('cant', (10 - contemp.val()));
-      $('#cant-'+contemp.key).text((10 - contemp.val()));
+        var cat = Number(contemp.key);
+        var cant = Number(contemp.val());
+        if(cant > 0 && cant < 11){
+      $('#cant-'+cat).attr('cant', (10 - cant));
+      $('#cant-'+cat).text((10 - cant));
         }
       })
     })
@@ -782,6 +782,10 @@ function UltimaDosisHace(){
 })
 
 $(document).on('click', 'body', function () {
+
+let navegador = navigator.userAgent;
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) { } else {
+     
 	var requestMethod = document.body.requestFullScreen || document.body.webkitRequestFullScreen || document.body.mozRequestFullScreen || document.body.msRequestFullScreen;
 		if(requestMethod){
 			requestMethod.call(document.body);
@@ -791,7 +795,10 @@ $(document).on('click', 'body', function () {
 				wscript.SendKeys("{F11}");
 			}
     }
+  }
+
 });
+
 
 </script>
 
