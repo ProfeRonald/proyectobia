@@ -450,7 +450,6 @@ function ApagarTodo(){
         $('#dispensador').show('slow');
         $('.fondoPantalla').css({'opacity':0.5});
         $('.fondoPantalla').show();
-        firebase.database().ref('bia/UltimaDosis').set({'fecha':Date.now(), 'cat': cat});
         firebase.database().ref('bia/Contador/' + cat).set(firebase.database.ServerValue.increment(1));
         firebase.database().ref('bia/ContadorTemp/' + cat).set(firebase.database.ServerValue.increment(1));
         firebase.database().ref('bia/ActivarAbrirVentana').set(0);
@@ -480,6 +479,7 @@ var icat = Number($('#fecha').attr('cat'));
   texto1.text = 'Seleccionando medicamento. Su medicamento ' + med[cat] + ' está siendo dispensado. Ha tomado un total de ' + cantidad + ' dosis, incluyendo esta. Le restan un total de ' + total_cant + ' dosis de su medicamento ' + med[cat];
   window.speechSynthesis.speak(texto1);
   texto1.onend = function (event) {
+  window.speechSynthesis.cancel();
   const texto2 = new SpeechSynthesisUtterance();
   texto2.lang = 'es-DO';
   var text2 = '';
@@ -491,6 +491,7 @@ var icat = Number($('#fecha').attr('cat'));
   window.speechSynthesis.speak(texto2);
    texto2.onend = function (event) {
     firebase.database().ref('bia/CerrarVentana').set(1);
+    firebase.database().ref('bia/UltimaDosis').set({'fecha':Date.now(), 'cat': cat});
   //   firebase.database().ref('bia/ActivarAudioApp').set(0);
  //  firebase.database().ref('bia/AudioApp').set(0);
     
@@ -500,6 +501,7 @@ var icat = Number($('#fecha').attr('cat'));
   }else{
     setTimeout(function () {
       firebase.database().ref('bia/CerrarVentana').set(1);
+      firebase.database().ref('bia/UltimaDosis').set({'fecha':Date.now(), 'cat': cat});
     // firebase.database().ref('bia/ActivarAudioApp').set(0);
    //  firebase.database().ref('bia/AudioApp').set(0);
     }, 6000);
@@ -584,7 +586,7 @@ $('.cantidad').hide();
 
 $(document).on("click", ".recargar", function () {
 var cat = Number($(this).attr('cat'));
-//firebase.database().ref('bia/ContadorTemp' + cat).set(0);
+//firebase.database().ref('bia/ContadorTemp/' + cat).set(0);
 $('.recargar').hide();
 $('.cantidad').show();
 })
@@ -629,13 +631,13 @@ function CerrarVentana(){
       constemp.forEach(function (contemp) {
         var cat = Number(contemp.key);
         var cant = Number(contemp.val());
-        if(cant > 0 && cant < 11){
+        if(cant > 0 && cant < 10){
       $('#cant-'+cat).attr('cant', (10 - cant));
       $('#cant-'+cat).text((10 - cant));
         }else{
-          firebase.database().ref('bia/ContadorTemp' + cat).set(0);
+          firebase.database().ref('bia/ContadorTemp/' + cat).set(0);
           $('#cant-'+cat).attr('cant', 10);
-          $('#cant-'+cat).text(cant);
+          $('#cant-'+cat).text('10');
         }
       })
     })
